@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversal Example</title>
+</head>
+<body>
+    <div id="root">
+        <header>
+            <h1>Title</h1>
+        </header>
+        <main>
+            <section>
+                <p>First paragraph</p>
+                <p>Second paragraph</p>
+            </section>
+            <article>
+                <h2>Subtitle</h2>
+                <p>Third paragraph</p>
+            </article>
+        </main>
+        <footer>
+            <p>Footer content</p>
+        </footer>
+    </div>
+
+    <script>
+        const depthTraverse = (root) => {
+            console.log(root.nodeName);
+            for (child of root.childNodes) {
+                depthTraverse(child);
+            }
+        }
+
+        const breadthTraverse = (root) => {
+            let queue = [root];
+            while (queue.length != 0) {
+                queue = [...queue, ...queue[0].childNodes];
+                console.log(queue.shift().nodeName);
+            }
+        }
+
+        const root = document.getElementById("root");
+        depthTraverse(root);
+        console.log("END of depthTraverse");
+        breadthTraverse(root);
+        console.log("END of breadthTraverse");
+    </script>
+</body>
+</html>
