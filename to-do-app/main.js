@@ -1,29 +1,63 @@
+class Todos {
+  todos = [];
+  localStorageKey = "todos";
+
+  constructor() {
+    this.todos = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    this.update();
+  }
+
+  addTodo(text) {
+    this.todos.push({
+      id: Math.random().toString(16).slice(2),
+      checked: false,
+      text,
+    });
+    this.update();
+  }
+
+  deleteTodo(todoId) {
+    this.todos = this.todos.filter((todo) => todo.id !== todoId);
+    this.update();
+  }
+
+  editTodo(id, data) {
+    this.todos = this.todos.map((todo) =>
+      todo.id === id ? { ...todo, ...data } : todo
+    );
+    this.update();
+  }
+
+  update() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.todos));
+
+    renderTodos({
+      todos: this.todos,
+      handleDelete: this.deleteTodo.bind(this),
+      handleEdit: this.editTodo.bind(this),
+    });
+  }
+}
+
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 const list = document.querySelector("section");
 const placeholder = document.querySelector("p");
-// localStorage.clear();
-if (localStorage.length == 0) {
-  localStorage.setItem("index", 0);
-}
-else {
-  const keys = [];
-  for (let i = 1; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (!Number.isNaN(key * 1)) {
-      keys.push(Number.parseInt(key));
-    }
+
+const toDoList = new Todos();
+
+function renderTodos(data) {
+  list.textContent = '';
+  if (data.todos.length == 0) {
+    placeholder.textContent = 'Nothing to do.';
+    return;
   }
-  for (let i of keys.sort()) {
-    addListItem(localStorage.getItem(i), i);
+  for (let item of data.todos) {
+    addListItem(item, data.handleEdit, data.handleDelete);
   }
 }
 
-if (list.children.length == 0) {
-  placeholder.textContent = "Nothing to do.";
-}
-
-function addListItem (text, index) {
+function addListItem(todo, handleEdit, handleDelete) {
   placeholder.textContent = '';
 
   const listItem = document.createElement("div");
@@ -45,36 +79,24 @@ function addListItem (text, index) {
   deleteButton.classList.add("btn", "btn-outline-danger");
 
   checkbox.type = "checkbox";
-  checkbox.checked = JSON.parse(localStorage.getItem(index + " checked"));
+  checkbox.checked = todo.checked;
 
-  itemValue.value = text;
+  itemValue.value = todo.text;
   itemValue.style.textDecoration = checkbox.checked ? "line-through" : "none";
 
   deleteButton.textContent = "Delete";
 
-  checkbox.onchange = () => {
-    itemValue.style.textDecoration = checkbox.checked ? "line-through" : "none";
-    localStorage.setItem(index + " checked", checkbox.checked);
-  }
+  checkbox.onchange = () => handleEdit(todo.id, {checked: checkbox.checked});
 
-  itemValue.onblur = () => {
-    localStorage.setItem(index, itemValue.value);
-  }
+  itemValue.onblur = () => handleEdit(todo.id, {text: itemValue.value});
 
   itemValue.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      localStorage.setItem(index, itemValue.value);
+    if (event.key === "Enter")
       itemValue.blur();
-    }
   });
   
   deleteButton.onclick = () => {
-    list.removeChild(listItem);
-    localStorage.removeItem(index);
-    localStorage.removeItem(index + "checked");
-    if (list.children.length == 0) {
-      placeholder.textContent = 'Nothing to do.';
-    }
+    handleDelete(todo.id);
   }
 }
 
@@ -83,12 +105,6 @@ form.addEventListener('submit', (event) => {
   input.focus();
   if (input.value == '')
     return;
-  const task = input.value;
+  toDoList.addTodo(input.value);
   input.value = "";
-
-  const index = Number.parseInt(localStorage.getItem("index"));
-  localStorage.setItem(index, task);
-  localStorage.setItem(index + " checked", "false");
-  localStorage.setItem("index", index + 1);
-  addListItem(task, index);
 });
