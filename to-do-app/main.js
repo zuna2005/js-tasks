@@ -52,12 +52,14 @@ function renderTodos(data) {
     placeholder.textContent = 'Nothing to do.';
     return;
   }
-  for (let item of data.todos) {
-    addListItem(item, data.handleEdit, data.handleDelete);
-  }
+  data.todos.forEach((item) => addListItem({ 
+    todo: item, 
+    handleEdit: data.handleEdit, 
+    handleDelete: data.handleDelete
+  }));
 }
 
-function addListItem(todo, handleEdit, handleDelete) {
+function addListItem({todo, handleEdit, handleDelete}) {
   placeholder.textContent = '';
 
   const listItem = document.createElement("div");
