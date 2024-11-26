@@ -1,13 +1,10 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",         // Use ESNext for ES module support
-    "moduleResolution": "Node", // Resolve modules in Node.js style
-    "target": "ESNext",         // Target modern JavaScript
-    "outDir": "./dist",         // Output directory for compiled files
-    "rootDir": "./src",         // Root directory of source files
-    "strict": true,             // Enable strict type-checking options
-    "esModuleInterop": true,    // Interop for CommonJS modules
-    "skipLibCheck": true        // Skip type checking of declaration files
-  },
-  "include": ["src"]
-}
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true
+    }
+  }
