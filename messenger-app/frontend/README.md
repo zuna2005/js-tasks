@@ -1,50 +1,82 @@
-# React + TypeScript + Vite
+# Messenger App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full-stack messaging application that enables seamless real-time communication. The app provides essential features for user authentication, profile management, and interactive messaging with a clean and responsive user interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Authentication & Authorization
+- Secure user registration and login.
+- Authentication flow to protect private routes and user data.
+- Token-based authorization for secure API interactions.
 
-## Expanding the ESLint configuration
+### 2. User Management
+- User profile settings for personalizing information.
+- Ability to view and update profile details.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 3. Chats
+- Search for users to initiate new conversations.
+- Delete chats to manage conversations.
 
-- Configure the top-level `parserOptions` property like this:
+### 4. Messaging
+- Create, edit, and delete messages.
+- Reply to specific messages in a conversation for context.
+- Real-time updates for a dynamic messaging experience.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Backend
+- **Node.js**: Server-side runtime for building the application logic.
+- **Nodemon**: Automatic server restarts during development.
+- **TypeScript**: For type-safe backend development.
+- **Express**: Lightweight framework for routing and APIs.
+- **PostgreSQL**: Relational database for storing user, chat, and message data.
+- **Prisma**: ORM for efficient and type-safe database queries.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Frontend
+- **TypeScript**: For type-safe frontend development.
+- **React**: For building an interactive and dynamic user interface.
+- **Vite**: Fast tooling for efficient development and build processes.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Setup and Development
+
+### Prerequisites
+1. Node.js installed on your system.
+2. A relational database (PostgreSQL) set up and running.
+3. Prisma CLI installed for database management.
+
+### Backend Setup
+1. Clone the repository.
+2. Navigate to the backend folder:
+   ```bash
+   cd backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Configure environment variables in a `.env` file:
+   ```plaintext
+   DATABASE_URL=your_database_connection_string
+   ```
+5. Run database migrations:
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+6. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Frontend Setup
+1. Navigate to the frontend folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
