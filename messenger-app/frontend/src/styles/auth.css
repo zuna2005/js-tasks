@@ -1,0 +1,55 @@
+.form-container {
+  input,
+  button {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+
+  input {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1.5px solid #d6d6d6;
+  }
+
+  input:focus {
+    border: 1.5px solid #0e64d1;
+    outline: none;
+  }
+
+  label,
+  p {
+    color: #444444;
+    font-size: small;
+  }
+
+  a {
+    color: #0e64d1;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+
+  a:hover {
+    color: #0a4189;
+  }
+
+  button {
+    margin: 15px 0px;
+    border: none;
+    background-color: #0e64d1;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #0a4189;
+    }
+  }
+
+  .error {
+    color: red;
+    margin-top: -20px;
+  }
+}
+
