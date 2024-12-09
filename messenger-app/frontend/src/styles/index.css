@@ -1,0 +1,14 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input, button {
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+}
