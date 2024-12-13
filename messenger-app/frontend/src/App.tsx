@@ -6,7 +6,6 @@ import useAuth from "./context/AuthContext.ts";
 
 function App() {
   const { loggedIn, loading } = useAuth();
-  console.log(loggedIn);
   if (loading) {
     return <div>Loading...</div>;
   }

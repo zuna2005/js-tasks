@@ -1,14 +1,13 @@
 import jwt from "jsonwebtoken";
 import { expressjwt } from "express-jwt";
+import { EXPIRATION_TIME, SECRET_KEY } from "../configs/configs";
 
-const SECRET_KEY = process.env.SECRET_KEY;
-
-type TokenPayload = {
+interface TokenPayload {
   username: string;
 };
 
 export function generateToken(payload: TokenPayload) {
-  return jwt.sign(payload, SECRET_KEY as string, { expiresIn: "1h" });
+  return jwt.sign(payload, SECRET_KEY as string, { expiresIn: EXPIRATION_TIME });
 }
 
 export const checkAuth = expressjwt({

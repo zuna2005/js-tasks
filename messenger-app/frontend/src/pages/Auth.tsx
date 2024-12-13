@@ -2,10 +2,11 @@ import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import useAuth from "../context/AuthContext.ts";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-type Errors = {
+interface Errors {
   [index: string]: boolean;
 };
 
@@ -21,6 +22,7 @@ const Auth = ({ signup }: { signup: boolean }) => {
   };
   const [errors, setErrors] = useState<Errors>({});
   const navigate = useNavigate();
+  const { setLoggedIn } = useAuth();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,6 +44,7 @@ const Auth = ({ signup }: { signup: boolean }) => {
           withCredentials: true,
         })
         .then(() => {
+          setLoggedIn(true);
           navigate(signup ? "/login" : "/");
         })
         .catch((error) => toast.error(error.response.data));

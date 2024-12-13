@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "format": "prettier . --write && prisma format",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",
