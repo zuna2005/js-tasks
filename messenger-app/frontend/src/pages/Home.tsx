@@ -1,15 +1,12 @@
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import { logoutUser } from "../api/authApi";
 
 const Home = () => {
   const navigate = useNavigate();
 
   function handleLogout() {
-    axios
-      .get(`${apiUrl}/auth/logout`, { withCredentials: true })
+    logoutUser()
       .then(() => navigate("/login"))
       .catch((error) => toast.error(error.response.data));
   }

@@ -1,10 +1,8 @@
-import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { authRequest } from "../api/authApi.ts";
 import useAuth from "../context/AuthContext.ts";
-
-const apiUrl = import.meta.env.VITE_API_URL;
 
 interface Errors {
   [index: string]: boolean;
@@ -38,13 +36,13 @@ const Auth = ({ signup }: { signup: boolean }) => {
     setErrors(newErrors);
 
     if (!hasErrors) {
-      axios
-        .post(`${apiUrl}/auth/${signup ? "signup" : "login"}`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        })
+      authRequest(signup, formData)
         .then(() => {
-          setLoggedIn(true);
+          if (signup) {
+            toast.success("Account created successfully");
+          } else {
+            setLoggedIn(true);
+          }          
           navigate(signup ? "/login" : "/");
         })
         .catch((error) => toast.error(error.response.data));
