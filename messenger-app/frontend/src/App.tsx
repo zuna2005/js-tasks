@@ -13,8 +13,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={<Auth signup={true} />} />
-        <Route path="/login" element={<Auth signup={false} />} />
+        <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Auth signup={true} />} />
+        <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Auth signup={false} />} />
       </Routes>
       <ToastContainer
         position="bottom-left"

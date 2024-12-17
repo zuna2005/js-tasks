@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { expressjwt, Request as JWTRequest } from "express-jwt";
 import {
-  COOKIE_NAME,
+  JWT_COOKIE_NAME,
   JWT_EXPIRATION_TIME,
   JWT_HASH_ALGORITHMS,
   JWT_SECRET_KEY,
@@ -15,7 +15,7 @@ export function generateToken(payload: TokenPayload) {
   return jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: JWT_EXPIRATION_TIME });
 }
 
-export const getToken = (req: JWTRequest) => req.cookies[COOKIE_NAME];
+export const getToken = (req: JWTRequest) => req.cookies[JWT_COOKIE_NAME];
 
 export const checkAuth = expressjwt({
   secret: JWT_SECRET_KEY,

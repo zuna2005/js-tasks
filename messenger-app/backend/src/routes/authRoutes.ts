@@ -1,8 +1,8 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import {
-  COOKIE_NAME,
-  COOKIE_OPTIONS,
+  JWT_COOKIE_NAME,
+  JWT_COOKIE_OPTIONS,
   JWT_SECRET_KEY,
   upload,
 } from "../configs/configs";
@@ -34,7 +34,7 @@ router.post("/login", upload.none(), async (req, res) => {
       const result = await comparePassword(password, user.password);
       if (result) {
         const token = generateToken({ username });
-        res.cookie(COOKIE_NAME, token, COOKIE_OPTIONS);
+        res.cookie(JWT_COOKIE_NAME, token, JWT_COOKIE_OPTIONS);
         res.status(200).send("Logged in");
       } else {
         res.status(401).send("Invalid credentials");
@@ -46,7 +46,7 @@ router.post("/login", upload.none(), async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  res.clearCookie(COOKIE_NAME);
+  res.clearCookie(JWT_COOKIE_NAME);
   res.send("Logged out");
 });
 
