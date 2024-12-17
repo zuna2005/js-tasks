@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { logoutUser } from "../api/authApi";
+import useAuth from "../context/AuthContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { setLoggedIn } = useAuth();
 
   function handleLogout() {
     logoutUser()
-      .then(() => navigate("/login"))
+      .then(() => {
+        setLoggedIn(false);
+        navigate("/login");
+      })
       .catch((error) => toast.error(error.response.data));
   }
   return (
