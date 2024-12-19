@@ -1,28 +1,24 @@
 import express from "express";
-import { PrismaClient } from "@prisma/client";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import authRoutes from "./routes/authRoutes";
+import { checkAuth } from "./helpers/jwtFunctions";
+import { CLIENT_URL, PORT } from "./configs/configs";
 
 const app = express();
-const port = 5000;
 
-app.get("/", (req, res) => {
-  res.send("Hello, TypeScript Node Express!");
+app.use(
+  cors({
+    origin: CLIENT_URL,
+    credentials: true,
+  }),
+);
+app.use(express.json());
+app.use(cookieParser());
+
+app.use("/auth", authRoutes);
+app.use(checkAuth);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-const prisma = new PrismaClient();
-
-async function testConnection() {
-  try {
-    await prisma.$connect();
-    console.log("Connected to the database successfully!");
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-  } finally {
-    await prisma.$disconnect();
-  }
-}
-
-testConnection();
