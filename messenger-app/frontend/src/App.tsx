@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import { ToastContainer } from "react-toastify";
-import Auth from "./pages/Auth.tsx";
-import Home from "./pages/Home.tsx";
 import useAuth from "./context/AuthContext.ts";
+import Home from "./pages/Home.tsx";
+import Login from "./pages/Login.tsx";
+import Signup from "./pages/Signup.tsx";
 
 function App() {
   const { loggedIn, loading } = useAuth();
@@ -13,8 +14,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Auth signup={true} />} />
-        <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Auth signup={false} />} />
+        <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
+        <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Signup />} />
       </Routes>
       <ToastContainer
         position="bottom-left"
