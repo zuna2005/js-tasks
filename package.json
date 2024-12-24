@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "lint-backend": "cd messenger-app/backend && npm run lint && npm run format"
+  },
+  "lint-staged": {
+    "messenger-app/backend/**": "npm run lint-backend"
+  }
+}
