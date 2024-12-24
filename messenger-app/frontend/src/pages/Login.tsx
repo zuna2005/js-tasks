@@ -21,7 +21,7 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
+    <div className="flex-container">
       <div className="form-container">
         <h1>Log in</h1>
         <AuthForm fieldNames={fieldNames} onFormSubmit={handleSubmit} />

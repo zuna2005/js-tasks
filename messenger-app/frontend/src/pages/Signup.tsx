@@ -19,7 +19,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="container">
+    <div className="flex-container">
       <div className="form-container">
         <h1>Sign up</h1>
         <AuthForm fieldNames={fieldNames} onFormSubmit={handleSubmit} />

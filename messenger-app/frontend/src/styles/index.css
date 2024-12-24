@@ -1,14 +1,100 @@
 body {
   font-family: "Poppins", sans-serif;
 }
-.container {
+
+button,
+input,
+textarea {
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  border: none;
+  cursor:                       pointer
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1.5px solid #d6d6d6;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #0e64d1;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  color: #444444;
+  font-size: small;
+}
+
+a {
+  color: #0e64d1;
+  text-decoration-line: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: #0a4189;
+  }
+}
+
+.blue-button {
+  background-color: #0e64d1;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  border: 1.5px solid #0e64d1;
+
+  &:hover {
+    background-color: #0a4189;
+    border-color: #0a4189;
+  }
+}
+
+.outline-button {
+  font-weight: 500;
+  font-size: 15px;
+  color: #0e64d1;
+  background-color: #ffffff;
+  border: 1.5px solid #0e64d1;
+
+  &:hover {
+    background-color: #0a4189;
+    border-color: #0a4189;
+    color: #ffffff;
+  }
+}
+
+.flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-input, button {
-  border-radius: 10px;
-  font-family: "Poppins", sans-serif;
+.form-container {
+  p {
+    color: #444444;
+    font-size: small;
+  }
+
+  button {
+    margin: 15px 0px;
+    width: 100%;
+  }
+
+  .error {
+    color: red;
+    margin-top: -20px;
+  }
 }
