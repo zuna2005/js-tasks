@@ -5,9 +5,11 @@
   },
   "scripts": {
     "prepare": "husky",
-    "lint-backend": "cd messenger-app/backend && npm run lint && npm run format"
+    "lint-backend": "cd messenger-app/backend && npm run lint && npm run format",
+    "lint-frontend": "cd messenger-app/frontend && npm run lint && npm run format"
   },
   "lint-staged": {
-    "messenger-app/backend/**": "npm run lint-backend"
+    "messenger-app/backend/**": "npm run lint-backend",
+    "messenger-app/frontend/**": "npm run lint-frontend"
   }
 }
