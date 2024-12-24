@@ -33,9 +33,11 @@ const AuthForm = ({ onFormSubmit, fieldNames }: AuthFormProps) => {
           {errors[fieldName]?.type === "maxLength" && (
             <p className="error">Limit of 20 characters is exceeded</p>
           )}
-                                 </div>
+        </div>
       ))}
-      <button className="blue-button" type="submit">Submit</button>
+      <button className="blue-button" type="submit">
+        Submit
+      </button>
     </form>
   );
 };

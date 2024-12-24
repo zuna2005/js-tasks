@@ -6,7 +6,12 @@ import { AUTH_FORM_FIELD_LABELS as fieldLabels } from "../configs/configs";
 import { FormInput } from "../types/authTypes.ts";
 
 const Signup = () => {
-  const fieldNames: Array<keyof typeof fieldLabels> = ["firstName", "lastName", "username", "password"];
+  const fieldNames: Array<keyof typeof fieldLabels> = [
+    "firstName",
+    "lastName",
+    "username",
+    "password",
+  ];
   const navigate = useNavigate();
 
   function handleSubmit(formData: FormInput) {

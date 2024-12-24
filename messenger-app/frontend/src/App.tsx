@@ -13,9 +13,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
-        <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Signup />} />
+        <Route
+          path="/"
+          element={loggedIn ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={loggedIn ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={loggedIn ? <Navigate to="/" /> : <Signup />}
+        />
       </Routes>
       <ToastContainer
         position="bottom-left"
