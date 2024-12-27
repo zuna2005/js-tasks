@@ -20,5 +20,5 @@ app.use("/auth", authRoutes);
 app.use(checkAuth);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server test is running on port ${PORT}`);
 });
