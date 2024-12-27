@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { AUTH_FORM_FIELD_LABELS as fieldLabels } from "../configs/configs";
 import { FormInput } from "../types/authTypes";
 
+//test
 interface AuthFormProps {
   onFormSubmit: (formData: FormInput) => void;
   fieldNames: Array<keyof typeof fieldLabels>;
