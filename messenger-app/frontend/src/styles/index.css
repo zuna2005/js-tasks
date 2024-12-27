@@ -75,6 +75,11 @@ a {
   }
 }
 
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -97,4 +102,17 @@ a {
     color: red;
     margin-top: -20px;
   }
+}
+
+.modal-body {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Ensures the image scales properly and avoids distortion */
+  border-radius: 50%;
 }

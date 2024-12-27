@@ -1,0 +1,25 @@
+.name {
+  margin-left: 15px;
+  font-weight: 650;
+  font-size: large;
+  color: #000000;
+}
+
+.username {
+  margin-left: 15px;
+  margin-top: -18px;
+  font-size: small;
+  color: #0e64d1;
+}
+
+.bio {
+  margin-bottom: -15px;
+  font-size: small;
+  font-weight: 650;
+  color: #000000;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: end;
+}

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { logoutUser } from "../api/authApi";
 import useAuth from "../context/AuthContext";
+import UserInfo from "../components/UserInfo/UserInfo";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Home = () => {
     <div>
       <h1>Welcome to Messenger App</h1>
       <button onClick={handleLogout}>Log out</button>
+      <UserInfo />
     </div>
   );
 };

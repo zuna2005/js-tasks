@@ -1,0 +1,18 @@
+.btn {
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    brightness 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  filter: brightness(0.8); /* Slight highlight */
+  transform: scale(1.1);
+}
+
+.h1 {
+  font-weight: 650;
+  font-size: large;
+}
