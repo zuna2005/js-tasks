@@ -5,11 +5,19 @@
   },
   "scripts": {
     "prepare": "husky",
-    "lint-backend": "cd messenger-app/backend && npm run lint && npm run format",
-    "lint-frontend": "cd messenger-app/frontend && npm run lint && npm run format"
+    "lint-backend": "cd messenger-app/backend && npm run lint",
+    "format-backend": "cd messenger-app/backend && npm run format",
+    "lint-frontend": "cd messenger-app/frontend && npm run lint",
+    "format-frontend": "cd messenger-app/frontend && npm run format"
   },
   "lint-staged": {
-    "messenger-app/backend/**": "npm run lint-backend",
-    "messenger-app/frontend/**": "npm run lint-frontend"
+    "messenger-app/backend/**": [
+      "npm run lint-backend",
+      "npm run format-backend"
+    ],
+    "messenger-app/frontend/**": [
+      "npm run lint-frontend",
+      "npm run format-frontend"
+    ]
   }
 }
