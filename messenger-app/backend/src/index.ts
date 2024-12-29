@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import authRoutes from "./routes/authRoutes";
-import { checkAuth } from "./helpers/jwtFunctions";
 import { CLIENT_URL, PORT } from "./configs/configs";
+import { checkAuth } from "./helpers/jwtFunctions";
+import { globalErrorHandler } from "./middlewares/errorHandler";
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use(checkAuth);
+
+// Global error handler
+app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

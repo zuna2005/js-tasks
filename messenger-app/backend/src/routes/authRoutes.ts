@@ -26,7 +26,7 @@ router.post("/signup", upload.none(), async (req, res) => {
   }
 });
 
-router.post("/login", upload.none(), async (req, res) => {
+router.post("/login", upload.none(), async (req, res, next) => {
   const { username, password } = req.body;
   try {
     const user = await getUserByUsername(username);
@@ -41,7 +41,7 @@ router.post("/login", upload.none(), async (req, res) => {
       }
     } else res.status(401).send("Invalid credentials");
   } catch (error) {
-    console.error("Error during login:", error);
+    next(error);
   }
 });
 
