@@ -8,7 +8,7 @@ import Signup from "./pages/Signup.tsx";
 function App() {
   const { loggedIn, loading } = useAuth();
   if (loading) {
-    return <div>Loading... test</div>;
+    return <div>Loading...</div>;
   }
   return (
     <BrowserRouter>
