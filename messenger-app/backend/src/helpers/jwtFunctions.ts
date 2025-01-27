@@ -21,4 +21,4 @@ export const checkAuth = expressjwt({
   secret: JWT_SECRET_KEY,
   algorithms: JWT_HASH_ALGORITHMS,
   getToken,
-}).unless({ path: ["/auth"] });
+});

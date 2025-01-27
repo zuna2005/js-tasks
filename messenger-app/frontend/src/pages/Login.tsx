@@ -4,14 +4,14 @@ import { loginUser } from "../api/authApi.ts";
 import AuthForm from "../components/AuthForm.tsx";
 import { AUTH_FORM_FIELD_LABELS as fieldLabels } from "../configs/configs";
 import useAuth from "../context/AuthContext.ts";
-import { FormInput } from "../types/authTypes.ts";
+import { User } from "../types/userTypes.ts";
 
 const Login = () => {
   const fieldNames: Array<keyof typeof fieldLabels> = ["username", "password"];
   const navigate = useNavigate();
   const { setLoggedIn } = useAuth();
 
-  function handleSubmit(formData: FormInput) {
+  function handleSubmit(formData: User) {
     loginUser(formData)
       .then(() => {
         setLoggedIn(true);

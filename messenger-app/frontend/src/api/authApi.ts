@@ -1,21 +1,19 @@
 import axios from "axios";
 import { API_URL } from "../configs/configs";
-import { FormInput } from "../types/authTypes";
+import { User } from "../types/userTypes";
 
 export function checkAuth() {
   return axios.get(`${API_URL}/auth/check`, { withCredentials: true });
 }
 
-export function signupUser(formData: FormInput) {
+export function signupUser(formData: User) {
   return axios.post(`${API_URL}/auth/signup`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
     withCredentials: true,
   });
 }
 
-export function loginUser(formData: FormInput) {
+export function loginUser(formData: User) {
   return axios.post(`${API_URL}/auth/login`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
     withCredentials: true,
   });
 }

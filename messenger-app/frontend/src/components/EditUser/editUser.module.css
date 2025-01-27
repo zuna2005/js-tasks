@@ -6,6 +6,21 @@
   gap: 5px;
 }
 
+.uploadBtn {
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 15px;
+  text-align: center;
+}
+
 .modalForm {
   margin-top: 13px;
+  p {
+    margin-top: -20px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: small;
 }

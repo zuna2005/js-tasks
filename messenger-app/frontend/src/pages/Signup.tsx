@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { signupUser } from "../api/authApi.ts";
 import AuthForm from "../components/AuthForm.tsx";
 import { AUTH_FORM_FIELD_LABELS as fieldLabels } from "../configs/configs";
-import { FormInput } from "../types/authTypes.ts";
+import { User } from "../types/userTypes.ts";
 
 const Signup = () => {
   const fieldNames: Array<keyof typeof fieldLabels> = [
@@ -14,7 +14,7 @@ const Signup = () => {
   ];
   const navigate = useNavigate();
 
-  function handleSubmit(formData: FormInput) {
+  function handleSubmit(formData: User) {
     signupUser(formData)
       .then(() => {
         toast.success("Account created successfully");

@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import multer from "multer";
+import express from "express";
 import { Algorithm } from "jsonwebtoken";
 
 dotenv.config();
@@ -17,7 +17,8 @@ export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 export const JWT_EXPIRATION_TIME = "1h";
 export const JWT_HASH_ALGORITHMS: Algorithm[] = ["HS256"];
 export const JWT_COOKIE_NAME = "token";
-export const JWT_COOKIE_OPTIONS = { httpOnly: true };
+export const USERNAME_COOKIE_NAME = "currentUser";
+export const COOKIE_OPTIONS = { httpOnly: true };
 export const HASH_SALT_ROUNDS = 10;
 
-export const upload = multer();
+export const router = express.Router();

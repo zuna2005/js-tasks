@@ -1,9 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { AUTH_FORM_FIELD_LABELS as fieldLabels } from "../configs/configs";
-import { FormInput } from "../types/authTypes";
+import { User } from "../types/userTypes";
 
 interface AuthFormProps {
-  onFormSubmit: (formData: FormInput) => void;
+  onFormSubmit: (formData: User) => void;
   fieldNames: Array<keyof typeof fieldLabels>;
 }
 
@@ -12,8 +12,8 @@ const AuthForm = ({ onFormSubmit, fieldNames }: AuthFormProps) => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormInput>();
-  const onSubmit: SubmitHandler<FormInput> = onFormSubmit;
+  } = useForm<User>();
+  const onSubmit: SubmitHandler<User> = onFormSubmit;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

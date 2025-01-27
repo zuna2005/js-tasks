@@ -1,18 +1,16 @@
-import express from "express";
 import jwt from "jsonwebtoken";
 import {
-  JWT_COOKIE_NAME,
-  JWT_COOKIE_OPTIONS,
   JWT_SECRET_KEY,
-  upload,
+  JWT_COOKIE_NAME,
+  USERNAME_COOKIE_NAME,
+  COOKIE_OPTIONS,
+  router,
 } from "../configs/configs";
 import { hashPassword, comparePassword } from "../helpers/hashPassword";
 import { generateToken, getToken } from "../helpers/jwtFunctions";
 import { createUser, getUserByUsername } from "../services/userService";
 
-const router = express.Router();
-
-router.post("/signup", upload.none(), async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const user = await getUserByUsername(req.body.username);
     if (user) res.status(400).send("Username already exists");
@@ -26,7 +24,7 @@ router.post("/signup", upload.none(), async (req, res) => {
   }
 });
 
-router.post("/login", upload.none(), async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await getUserByUsername(username);
@@ -34,7 +32,8 @@ router.post("/login", upload.none(), async (req, res) => {
       const result = await comparePassword(password, user.password);
       if (result) {
         const token = generateToken({ username });
-        res.cookie(JWT_COOKIE_NAME, token, JWT_COOKIE_OPTIONS);
+        res.cookie(JWT_COOKIE_NAME, token, COOKIE_OPTIONS);
+        res.cookie(USERNAME_COOKIE_NAME, username, COOKIE_OPTIONS);
         res.status(200).send("Logged in");
       } else {
         res.status(401).send("Invalid credentials");
@@ -47,6 +46,7 @@ router.post("/login", upload.none(), async (req, res) => {
 
 router.get("/logout", (req, res) => {
   res.clearCookie(JWT_COOKIE_NAME);
+  res.clearCookie(USERNAME_COOKIE_NAME);
   res.send("Logged out");
 });
 
