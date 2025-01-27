@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "preinstall": "cd ../.. && npm install",
     "build": "tsc && node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "format": "prettier --write . && prisma format",
-    "lint": "eslint ."
+    "format": "prisma format && prettier --write --ignore-unknown",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",
