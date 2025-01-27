@@ -6,7 +6,7 @@
     "preinstall": "cd ../.. && npm install",
     "build": "tsc && node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "format": "prisma format && prettier --write",
+    "format": "prisma format && prettier --write --ignore-unknown",
     "lint": "eslint"
   },
   "keywords": [],
