@@ -19,8 +19,6 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use(checkAuth);
-
-// Global error handler
 app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
